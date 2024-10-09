@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: ac3575f0-a398-4fc4-b2ce-2a416522eaf9
+      url: 'https://llm-notes-lightbridge.netlify.app'
