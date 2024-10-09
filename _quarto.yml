@@ -1,0 +1,21 @@
+project:
+  type: book
+
+book:
+  title: "LLM Notes"
+  author: "Kittipos Sirivongrungson"
+  date: today
+  repo-url: https://github.com/Lightbridge-KS/llm-notes
+  site-url: https://llm-notes-lightbridge.netlify.app
+  chapters:
+    - index.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: zephyrs
+
+execute:
+  freeze: auto
