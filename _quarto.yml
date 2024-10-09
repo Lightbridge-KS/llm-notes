@@ -13,6 +13,7 @@ book:
     - part: "OpenAI"
       chapters: 
         - "content/openai/openai-vision.ipynb"
+        - "content/openai/openai-dataext-etl.ipynb"
 
 bibliography: references.bib
 
