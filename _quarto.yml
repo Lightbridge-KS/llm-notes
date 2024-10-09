@@ -10,6 +10,9 @@ book:
   chapters:
     - index.qmd
     - references.qmd
+    - part: "OpenAI"
+      chapters: 
+        - "content/openai/openai-vision.ipynb"
 
 bibliography: references.bib
 
