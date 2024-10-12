@@ -14,6 +14,7 @@ book:
       chapters: 
         - "content/openai/openai-vision.ipynb"
         - "content/openai/openai-dataext-etl-1.ipynb"
+        - "content/openai/openai-dataext-etl-2.ipynb"
 
 bibliography: references.bib
 
