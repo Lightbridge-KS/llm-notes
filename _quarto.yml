@@ -18,6 +18,9 @@ book:
     - part: "Regex"
       chapters: 
         - "regex/censor-text.ipynb"
+    - part: "Parsing"
+      chapters: 
+        - "parse/pymupdf.ipynb"
 
 bibliography: references.bib
 
