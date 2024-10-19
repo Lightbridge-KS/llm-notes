@@ -15,6 +15,7 @@ book:
         - "content/openai/openai-vision.ipynb"
         - "content/openai/openai-dataext-etl-1.ipynb"
         - "content/openai/openai-dataext-etl-2.ipynb"
+        - "content/openai/openai-pdf2md.ipynb"
     - part: "Regex"
       chapters: 
         - "regex/censor-text.ipynb"
