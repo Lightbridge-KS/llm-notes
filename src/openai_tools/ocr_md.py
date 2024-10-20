@@ -46,7 +46,7 @@ def ocr_single_image_to_markdown(base64_image,
     
     **Heading level:** The highest level of heading is {heading_lv_max}. 
     **LaTeX Math expression**
-    - Inline: surround the inline expression with dollar symbols, for example: $\pi$
+    - Inline: surround the inline expression with dollar symbols, for example: $1+1 = 2$
     - Blocks: delimit the block expression with two dollar symbols, for example:
       $$
       E = m \times c^2 

@@ -16,6 +16,9 @@ book:
         - "content/openai/openai-dataext-etl-1.ipynb"
         - "content/openai/openai-dataext-etl-2.ipynb"
         - "content/openai/openai-pdf2md.ipynb"
+    - part: "Anthropic"
+      chapters: 
+        - "content/anthropic/best_practices_for_vision.ipynb"
     - part: "Regex"
       chapters: 
         - "regex/censor-text.ipynb"
