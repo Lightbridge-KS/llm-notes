@@ -5,13 +5,35 @@ import pandas as pd
 from openai import OpenAI
 client = OpenAI()
 
-
 def get_completions_vision_mem_df(image_prompt: str, 
+                                  image_prompt_next: str | None = None,
                                   image_urls: List[str] | None = None, 
                                   base64_images: List[str] | None = None, 
                                   system_prompt: str = "You are a helpful assistant.",
                                   model = "gpt-4o"):
-    """Get Vision Completion with Memory
+    
+    """
+    Get text completion with memory with image prompts.
+
+    Parameters
+    ----------
+    image_prompt : str
+        The text prompt for the image.
+    image_prompt_next : str | None, optional
+        The next text prompt for the image. If provided, use this prompt for non-first iteration.
+    image_urls : List[str] | None, optional
+        The list of URLs for the images. If `base64_images` is provided, ignore `image_urls`.
+    base64_images : List[str] | None, optional
+        The list of base64-encoded images. If provided, ignore `image_urls`.
+    system_prompt : str, optional
+        The system prompt for the chat completion.
+    model : str, optional
+        The model to use for the chat completion.
+
+    Returns
+    -------
+    mem_vision_df : pd.DataFrame
+        The DataFrame with the user text, user image URL, and assistant text.
     """
     msg: List[dict[str, str | List]] = []
     mem_vision_df = pd.DataFrame({"user_text": [], "user_image_url": [], "assistant_text": []})
@@ -24,6 +46,10 @@ def get_completions_vision_mem_df(image_prompt: str,
         image_urls = [f"data:image/png;base64,{base64_image}" for base64_image in base64_images]
     
     for i in range(len(image_urls)):
+        
+        # For non-first iteration, if next image prompt is provided, use it.
+        if i != 0 and image_prompt_next:
+            image_prompt = image_prompt_next
         
         # Add Image prompt and URL to Memory DF
         mem_vision_df.loc[i] = [image_prompt, image_urls[i], None]

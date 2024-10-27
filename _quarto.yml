@@ -16,6 +16,7 @@ book:
         - "content/openai/openai-dataext-etl-1.ipynb"
         - "content/openai/openai-dataext-etl-2.ipynb"
         - "content/openai/openai-pdf2md.ipynb"
+        - "content/openai/openai-pdf2md-mem.ipynb"
         - "content/openai/openai-memory-custom.ipynb"
     - part: "Anthropic"
       chapters: 
