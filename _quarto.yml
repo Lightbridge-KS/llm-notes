@@ -12,6 +12,7 @@ book:
     - references.qmd
     - part: "OpenAI"
       chapters: 
+        - "content/openai/openai-memory-custom.ipynb"
         - "content/openai/openai-vision.ipynb"
         - "content/openai/openai-dataext-etl-1.ipynb"
         - "content/openai/openai-dataext-etl-2.ipynb"
