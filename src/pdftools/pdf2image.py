@@ -24,7 +24,7 @@ def pdf_to_base64_images(pdf_path):
                 img = Image.open(image_bytes)
 
                 # Convert the image to Base64 directly from memory
-                base64_image = encode_image(img)
+                base64_image = encode_image_pil(img)
                 base64_images.append(base64_image)
 
             return base64_images
@@ -33,7 +33,7 @@ def pdf_to_base64_images(pdf_path):
         print(f"Error processing PDF: {e}")
         return []
 
-def encode_image(img: Image.Image) -> str:
+def encode_image_pil(img: Image.Image) -> str:
     """Encode a PIL image to a Base64 string."""
     with io.BytesIO() as buffer:
         img.save(buffer, format="PNG")
