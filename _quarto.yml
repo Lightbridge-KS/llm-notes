@@ -27,6 +27,9 @@ book:
     - part: "Parsing"
       chapters: 
         - "parse/pymupdf.ipynb"
+    - part: "Chatlas"
+      chapters: 
+        - "content/chatlas/str-data-chatlas.ipynb"
 
 bibliography: references.bib
 
