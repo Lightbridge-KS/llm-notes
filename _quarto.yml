@@ -21,6 +21,12 @@ book:
     - part: "Anthropic"
       chapters: 
         - "content/anthropic/best_practices_for_vision.ipynb"
+    - part: "Mistral"
+      chapters: 
+        # - "content/mistral/Mistral_OCR_structured_ocr.ipynb"
+        - "content/mistral/Mistral_OCR_Dev.ipynb"
+        - "content/mistral/Mistral_OCR_My.ipynb"
+
     - part: "Regex"
       chapters: 
         - "regex/censor-text.ipynb"
