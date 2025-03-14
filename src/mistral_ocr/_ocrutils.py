@@ -1,4 +1,5 @@
 import base64
+import re
 from pathlib import Path
 
 
@@ -30,3 +31,31 @@ def save_base64_to_image(base64_string, output_file_path):
     except Exception as e:
         print(f"Error saving image: {e}")
         return False
+    
+
+def add_image_folder_in_markdown(markdown_string, folder_path=Path(".")):
+    """
+    Add a folder path before image filenames in markdown image links.
+    """
+    # Validate that folder_path is a Path object
+    if not isinstance(folder_path, Path):
+        raise TypeError("folder_path must be a pathlib.Path object")
+    
+    # Ensure the folder path ends with a separator
+    # Path.as_posix() converts the path to a string with forward slashes
+    # We add a trailing slash if it doesn't already have one
+    folder_str = folder_path.as_posix()
+    if not folder_str.endswith('/'):
+        folder_str += '/'
+    
+    # Pattern matches markdown image syntax: ![alt](filename)
+    pattern = r'(!\[.*?\])\((.*?)\)'
+    
+    # Replace function adds the folder path to the filename part
+    def add_folder(match):
+        alt_text = match.group(1)
+        filename = match.group(2)
+        return f'{alt_text}({folder_str}{filename})'
+    
+    # Apply the replacement
+    return re.sub(pattern, add_folder, markdown_string)

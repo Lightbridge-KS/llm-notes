@@ -8,6 +8,7 @@ from mistralai.models import OCRResponse
 
 from ._ocrutils import (
     replace_images_in_markdown,
+    add_image_folder_in_markdown,
     save_base64_to_image,
 )
 
@@ -26,14 +27,14 @@ class MyMistralOCRpdf:
     ----------
     file_path : str or Path
         Path to the PDF file to be processed
-    image_folder_path : str or Path
+    image_dir_path : str or Path
         Directory path where extracted images will be saved
         
     Attributes
     ----------
     file_path : Path
         Path to the PDF file being processed
-    image_folder_path : Path  
+    image_dir_path : Path  
         Directory path where extracted images will be saved
     ocr_response : OCRResponse or None
         Response object from Mistral OCR API containing the OCR results,
@@ -49,21 +50,21 @@ class MyMistralOCRpdf:
 
     def __init__(self, 
                  file_path: str | Path,
-                 image_folder_path: str | Path):
+                 image_dir_path: str | Path):
         self.file_path = Path(file_path)
-        self.image_folder_path = Path(image_folder_path)
+        self.image_dir_path = Path(image_dir_path)
         self.ocr_response = None
         
         if not self.file_path.is_file():
             raise FileNotFoundError(f"The file '{self.file_path}' does not exist.")
         
-        if not self.image_folder_path.is_dir():
-            raise NotADirectoryError(f"The directory '{self.image_folder_path}' does not exist.")
+        if not self.image_dir_path.is_dir():
+            raise NotADirectoryError(f"The directory '{self.image_dir_path}' does not exist.")
             
         
     def __repr__(self):
         ocr_status = "processed" if self.ocr_response else "not processed"
-        return f"MyMistralOCR(file_path='{self.file_path}', image_folder_path='{self.image_folder_path}', ocr_status='{ocr_status}', ocr_response={self.ocr_response})"
+        return f"MyMistralOCR(file_path='{self.file_path}', image_dir_path='{self.image_dir_path}', ocr_status='{ocr_status}', ocr_response={self.ocr_response})"
 
     def ocr_pdf(self):
         """OCR one PDF file"""
@@ -87,7 +88,12 @@ class MyMistralOCRpdf:
         return self.ocr_response
 
     def to_markdown(self):
-        return "\n\n".join([page.markdown for page in self.ocr_response.pages])
+        md = "\n\n".join([page.markdown for page in self.ocr_response.pages])
+        # Add image folder path to markdown
+        md = add_image_folder_in_markdown(md, self.image_dir_path)
+        return md
+    
+
 
     def to_markdown_with_inline_img(self):
         markdowns: list[str] = []
@@ -113,7 +119,7 @@ class MyMistralOCRpdf:
         results = {}
         for page in self.ocr_response.pages:
             for img in page.images:
-                output_path = Path(self.image_folder_path, f"{img.id}")
+                output_path = Path(self.image_dir_path, f"{img.id}")
                 success = save_base64_to_image(img.image_base64, output_path)
                 results[img.id] = success
         
